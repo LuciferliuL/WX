@@ -2,6 +2,7 @@
   <div class="hello">
     <p>{{title}}</p>
     <p v-if="show">{{subTitle}}</p>
+    <button @click="hideorshow">隐藏</button>
     <div>
       <input type="text" v-model="todo">
       <button @click="handleClick">添加</button>
@@ -29,6 +30,9 @@ export default {
       // this.title = '你好 小程序'
       this.list.push(this.todo)
       this.todo = ''
+    },
+    hideorshow () {
+      this.show = !this.show
     }
   }
 }
