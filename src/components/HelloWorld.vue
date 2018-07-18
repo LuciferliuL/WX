@@ -8,34 +8,42 @@
       <button @click="handleClick">添加</button>
     </div>
     <ul>
-      <li v-for="lists in list" :key='lists'>{{lists}}</li>
+      <li v-for="(lists, index) in list" :key='index' @click="boolColor(index)"
+      :class="{'done':lists.bool}">{{index + 1}}{{lists.text}}</li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data () {
+  name: "HelloWorld",
+  data() {
     return {
-      title: 'hello',
-      subTitle: '看见我',
+      title: "hello",
+      subTitle: "看见我",
       show: true,
-      todo: '',
-      list: ['吃饭', '睡觉', '敲代码']
-    }
+      todo: "",
+      list: [
+        { text: "吃饭", bool: false },
+        { text: "睡觉", bool: false },
+        { text: "敲代码", bool: false }
+      ]
+    };
   },
   methods: {
-    handleClick () {
+    handleClick() {
       // this.title = '你好 小程序'
-      this.list.push(this.todo)
-      this.todo = ''
+      this.list.push(this.todo);
+      this.todo = "";
     },
-    hideorshow () {
-      this.show = !this.show
+    hideorshow() {
+      this.show = !this.show;
+    },
+    boolColor(index) {
+      this.list[index].bool = !this.list[index].bool
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -54,5 +62,9 @@ li {
 }
 a {
   color: #42b983;
+}
+li.done{
+  text-decoration: line-through;
+  color: red
 }
 </style>
